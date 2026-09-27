@@ -67,7 +67,7 @@ export function InfrastructureModal({ item, onClose, onAudit }: Props) {
             <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
               <div>
                 <motion.div
-                  animate={reduceMotion ? undefined : { y: [0, -6, 0] }}
+                  animate={reduceMotion ? { y: 0 } : { y: [0, -6, 0] }}
                   transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                   className="flex size-14 items-center justify-center border border-primary/25 bg-primary/10 text-primary"
                 >
