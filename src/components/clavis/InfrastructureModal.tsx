@@ -3,12 +3,18 @@ import { ArrowUpRight, Check, X, type LucideIcon } from "lucide-react";
 import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 
+export type InfrastructureMetric = {
+  value: string;
+  label: string;
+  capability?: boolean;
+};
+
 export type InfrastructureDetail = {
   icon: LucideIcon;
   title: string;
   kicker: string;
   text: string;
-  metrics: Array<{ value: string; label: string }>;
+  metrics: InfrastructureMetric[];
   steps: string[];
 };
 
@@ -83,16 +89,27 @@ export function InfrastructureModal({ item, onClose, onAudit }: Props) {
                   {item.text}
                 </p>
 
-                <div className="mt-10 grid grid-cols-3 border-y border-border/80">
+                <dl className="mt-10 border-y border-border/80">
                   {item.metrics.map((metric) => (
-                    <div key={metric.label} className="border-r border-border/80 px-3 py-6 last:border-r-0 sm:px-5">
-                      <p className="font-serif text-xl text-foreground sm:text-3xl">{metric.value}</p>
-                      <p className="mt-2 text-[0.6rem] uppercase leading-relaxed tracking-[0.12em] text-muted-foreground sm:text-[0.65rem]">
+                    <div
+                      key={metric.value}
+                      className="flex items-baseline justify-between gap-6 border-b border-border/80 py-4 last:border-b-0"
+                    >
+                      <dt
+                        className={
+                          metric.capability
+                            ? "font-serif text-lg leading-snug text-foreground sm:text-xl"
+                            : "font-serif text-xl text-foreground sm:text-2xl"
+                        }
+                      >
+                        {metric.value}
+                      </dt>
+                      <dd className="shrink-0 text-[0.6rem] uppercase tracking-[0.14em] text-muted-foreground">
                         {metric.label}
-                      </p>
+                      </dd>
                     </div>
                   ))}
-                </div>
+                </dl>
               </div>
 
               <div className="flex flex-col justify-between border-l border-border/80 pl-0 lg:pl-10">
