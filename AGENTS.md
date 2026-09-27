@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Keep browser-only 3D presentation isolated in `src/components/clavis/GlassKeyCanvas.tsx` behind a mounted guard, because the site is server-rendered.
