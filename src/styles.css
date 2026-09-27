@@ -176,6 +176,20 @@
   box-shadow: var(--glass-shadow);
 }
 
+@utility liquid-card {
+  background-color: color-mix(in oklab, var(--color-background) 30%, transparent);
+  backdrop-filter: blur(40px);
+  border: 1px solid color-mix(in oklab, var(--color-background) 40%, transparent);
+  box-shadow: 0 20px 48px color-mix(in oklab, var(--color-foreground) 12%, transparent);
+}
+
+@utility liquid-modal {
+  background-color: color-mix(in oklab, var(--color-background) 62%, transparent);
+  backdrop-filter: blur(48px) saturate(145%);
+  border: 1px solid color-mix(in oklab, var(--color-background) 72%, transparent);
+  box-shadow: 0 32px 90px color-mix(in oklab, var(--color-foreground) 22%, transparent);
+}
+
 @utility text-balance-tight {
   text-wrap: balance;
 }
