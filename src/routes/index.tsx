@@ -344,7 +344,7 @@ function Index() {
                       visible: { opacity: 1, x: 0 },
                     }}
                     transition={{ duration: 0.72, delay: i * 0.04, ease: [0.16, 1, 0.3, 1] }}
-                    className="group -mx-4 grid gap-4 border-b border-border/80 px-4 py-9 transition-colors duration-500 hover:bg-background/45 md:grid-cols-[5rem_1fr_1.2fr] md:items-baseline md:gap-10"
+                    className="group -mx-4 grid gap-4 border-b border-border/80 px-4 py-9 transition-colors duration-500 hover:bg-background/75 md:grid-cols-[5rem_1fr_1.2fr] md:items-baseline md:gap-10"
                   >
                     <span className="text-sm tracking-[0.2em] text-primary">{d.n}</span>
                     <div className="flex items-start gap-4">
