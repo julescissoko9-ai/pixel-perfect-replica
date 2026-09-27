@@ -3,12 +3,18 @@ import { ArrowUpRight, Check, X, type LucideIcon } from "lucide-react";
 import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 
+export type InfrastructureMetric = {
+  value: string;
+  label: string;
+  capability?: boolean;
+};
+
 export type InfrastructureDetail = {
   icon: LucideIcon;
   title: string;
   kicker: string;
   text: string;
-  metrics: Array<{ value: string; label: string }>;
+  metrics: InfrastructureMetric[];
   steps: string[];
 };
 
@@ -83,10 +89,21 @@ export function InfrastructureModal({ item, onClose, onAudit }: Props) {
                   {item.text}
                 </p>
 
-                <div className="mt-10 grid grid-cols-3 border-y border-border/80">
+                <div className="mt-10 grid border-y border-border/80 sm:grid-cols-3">
                   {item.metrics.map((metric) => (
-                    <div key={metric.label} className="border-r border-border/80 px-3 py-6 last:border-r-0 sm:px-5">
-                      <p className="font-serif text-xl text-foreground sm:text-3xl">{metric.value}</p>
+                    <div
+                      key={metric.value}
+                      className="border-b border-border/80 px-3 py-6 last:border-b-0 sm:border-b-0 sm:border-r sm:last:border-r-0 sm:px-5"
+                    >
+                      <p
+                        className={
+                          metric.capability
+                            ? "font-serif text-base leading-snug text-foreground sm:text-xl"
+                            : "font-serif text-xl text-foreground sm:text-3xl"
+                        }
+                      >
+                        {metric.value}
+                      </p>
                       <p className="mt-2 text-[0.6rem] uppercase leading-relaxed tracking-[0.12em] text-muted-foreground sm:text-[0.65rem]">
                         {metric.label}
                       </p>

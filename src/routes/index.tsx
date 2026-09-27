@@ -1,7 +1,16 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "motion/react";
 import { useState } from "react";
-import { ShieldCheck, Network, Database, ArrowUpRight, Mail } from "lucide-react";
+import {
+  ShieldCheck,
+  Network,
+  Database,
+  ArrowUpRight,
+  Mail,
+  Workflow,
+  Lock,
+  Scale,
+} from "lucide-react";
 import { AuditModal } from "@/components/clavis/AuditModal";
 import { GlassKeyCanvas } from "@/components/clavis/GlassKeyCanvas";
 import { GridBackdrop } from "@/components/clavis/GridBackdrop";
@@ -61,8 +70,8 @@ const infrastructures: InfrastructureDetail[] = [
     kicker: "Monétisation des Refus",
     text: "Une marketplace privée transformant vos chantiers refusés en profit net. Sous-traitez vos surplus à un réseau local vérifié, sous séquestre financier automatisé.",
     metrics: [
-      { value: "31 %", label: "Refus valorisés" },
-      { value: "14", label: "Partenaires actifs" },
+      { value: "Monétisation des Surplus", label: "Capacité système", capability: true },
+      { value: "Réseau Privé Sur-Mesure", label: "Capacité système", capability: true },
       { value: "7,8 k€", label: "Flux mensuel" },
     ],
     steps: [
@@ -77,8 +86,8 @@ const infrastructures: InfrastructureDetail[] = [
     kicker: "Injection de Liquidités",
     text: "L'exploitation algorithmique de vos bases de données inactives pour réactiver votre capital dormant et générer des flux de trésorerie immédiats.",
     metrics: [
-      { value: "2 840", label: "Contacts analysés" },
-      { value: "18 %", label: "Taux réactivé" },
+      { value: "Audit Data Intégral", label: "Capacité système", capability: true },
+      { value: "Objectif de Conversion Cible", label: "Capacité système", capability: true },
       { value: "21 j", label: "Cycle moyen" },
     ],
     steps: [
@@ -92,16 +101,19 @@ const infrastructures: InfrastructureDetail[] = [
 const doctrine = [
   {
     n: "01",
+    icon: Workflow,
     title: "Le Système supplante l'Effort",
     text: "Nous ne vendons pas d'heures de travail. Nous installons des architectures logicielles qui tournent 24h/24.",
   },
   {
     n: "02",
+    icon: Lock,
     title: "Séquestre & Maîtrise",
     text: "Celui qui contrôle le flux de paiement contrôle le marché.",
   },
   {
     n: "03",
+    icon: Scale,
     title: "Alignement des Intérêts",
     text: "Si nos infrastructures ne génèrent aucune liquidité, notre intervention ne vous coûte rien.",
   },
@@ -210,18 +222,37 @@ function Index() {
           </div>
         </section>
 
-        <section className="mx-auto max-w-4xl px-6 py-32 sm:py-44">
-          <motion.h2
-            variants={reveal}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.4 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="text-balance-tight text-center text-3xl leading-snug text-foreground sm:text-4xl lg:text-5xl"
-          >
-            «&nbsp;L'artisanat de pointe perd 30&nbsp;% de sa marge nette dans la gestion manuelle
-            de ses flux.&nbsp;»
-          </motion.h2>
+        <section className="relative overflow-hidden py-40 sm:py-60">
+          <div aria-hidden className="pointer-events-none absolute inset-0 z-0">
+            <div className="absolute left-1/2 top-1/2 size-[30rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/25 blur-[130px] sm:size-[42rem]" />
+          </div>
+          <div className="relative z-10 mx-auto max-w-4xl px-6">
+            <motion.div
+              variants={reveal}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.35 }}
+              transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+              className="liquid-card relative overflow-hidden px-8 py-16 text-center sm:px-16 sm:py-24"
+            >
+              <span
+                aria-hidden
+                className="pointer-events-none absolute left-2 top-2 select-none font-serif text-[7rem] leading-[0.65] text-primary/20 sm:left-6 sm:text-[12rem]"
+              >
+                {"«"}
+              </span>
+              <span
+                aria-hidden
+                className="pointer-events-none absolute bottom-2 right-2 select-none font-serif text-[7rem] leading-[0.65] text-primary/20 sm:right-6 sm:text-[12rem]"
+              >
+                {"»"}
+              </span>
+              <h2 className="text-balance-tight relative text-3xl leading-snug text-foreground sm:text-4xl lg:text-5xl">
+                L'artisanat de pointe perd 30&nbsp;% de sa marge nette dans la gestion manuelle de
+                ses flux.
+              </h2>
+            </motion.div>
+          </div>
         </section>
 
         <section id="infrastructures" className="relative overflow-hidden bg-ice py-28 sm:py-36">
@@ -277,44 +308,58 @@ function Index() {
           </div>
         </section>
 
-        <section id="doctrine" className="mx-auto max-w-5xl px-6 py-28 sm:py-40">
-          <motion.h2
-            variants={reveal}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="text-4xl text-foreground sm:text-5xl"
-          >
-            Notre Doctrine
-          </motion.h2>
-
-          <motion.ol
-            className="mt-16 divide-y divide-border border-t border-border"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={{
-              hidden: {},
-              visible: { transition: { staggerChildren: 0.16 } },
-            }}
-          >
-            {doctrine.map((d, i) => (
-              <motion.li
-                key={d.n}
-                variants={{
-                  hidden: { opacity: 0, x: -56 },
-                  visible: { opacity: 1, x: 0 },
-                }}
-                transition={{ duration: 0.72, delay: i * 0.04, ease: [0.16, 1, 0.3, 1] }}
-                className="grid gap-4 py-10 md:grid-cols-[6rem_1fr_1.2fr] md:items-baseline md:gap-10"
+        <section id="doctrine" className="relative overflow-hidden py-28 sm:py-40">
+          <div aria-hidden className="pointer-events-none absolute inset-0 z-0">
+            <div className="absolute left-[2%] top-[14%] size-72 rounded-full bg-primary/30 blur-[110px]" />
+            <div className="absolute bottom-[8%] right-[4%] size-80 rounded-full bg-primary/25 blur-[120px]" />
+          </div>
+          <div className="relative z-10 mx-auto max-w-5xl px-6">
+            <div className="liquid-card px-6 py-12 sm:px-12 sm:py-16">
+              <motion.h2
+                variants={reveal}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                transition={{ duration: 0.7 }}
+                className="text-4xl text-foreground sm:text-5xl"
               >
-                <span className="text-sm tracking-[0.2em] text-primary">{d.n}</span>
-                <h3 className="text-xl text-foreground sm:text-2xl">{d.title}</h3>
-                <p className="text-sm leading-relaxed text-muted-foreground">{d.text}</p>
-              </motion.li>
-            ))}
-          </motion.ol>
+                Notre Doctrine
+              </motion.h2>
+
+              <motion.ol
+                className="mt-12 border-t border-border/80"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.2 }}
+                variants={{
+                  hidden: {},
+                  visible: { transition: { staggerChildren: 0.16 } },
+                }}
+              >
+                {doctrine.map((d, i) => (
+                  <motion.li
+                    key={d.n}
+                    variants={{
+                      hidden: { opacity: 0, x: -56 },
+                      visible: { opacity: 1, x: 0 },
+                    }}
+                    transition={{ duration: 0.72, delay: i * 0.04, ease: [0.16, 1, 0.3, 1] }}
+                    className="group -mx-4 grid gap-4 border-b border-border/80 px-4 py-9 transition-colors duration-500 hover:bg-background/45 md:grid-cols-[5rem_1fr_1.2fr] md:items-baseline md:gap-10"
+                  >
+                    <span className="text-sm tracking-[0.2em] text-primary">{d.n}</span>
+                    <div className="flex items-start gap-4">
+                      <d.icon
+                        className="mt-0.5 size-5 shrink-0 text-primary transition-transform duration-500 group-hover:scale-110"
+                        strokeWidth={1.25}
+                      />
+                      <h3 className="text-xl text-foreground sm:text-2xl">{d.title}</h3>
+                    </div>
+                    <p className="text-sm leading-relaxed text-muted-foreground">{d.text}</p>
+                  </motion.li>
+                ))}
+              </motion.ol>
+            </div>
+          </div>
         </section>
 
         <section id="cabinet" className="bg-ice py-24">
