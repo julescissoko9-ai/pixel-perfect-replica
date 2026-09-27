@@ -233,7 +233,7 @@ function Index() {
               whileInView="visible"
               viewport={{ once: true, amount: 0.35 }}
               transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-              className="liquid-card relative overflow-hidden px-8 py-16 text-center sm:px-16 sm:py-24"
+              className="relative overflow-hidden border border-white/60 bg-white/40 px-8 py-16 text-center backdrop-blur-xl sm:px-16 sm:py-24"
             >
               <span
                 aria-hidden
