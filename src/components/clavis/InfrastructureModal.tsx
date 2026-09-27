@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 
 export type InfrastructureMetric = {
   value: string;
-  label: string;
+  label?: string;
   capability?: boolean;
 };
 
@@ -104,9 +104,11 @@ export function InfrastructureModal({ item, onClose, onAudit }: Props) {
                       >
                         {metric.value}
                       </dt>
-                      <dd className="shrink-0 text-[0.6rem] uppercase tracking-[0.14em] text-muted-foreground">
-                        {metric.label}
-                      </dd>
+                      {metric.label && (
+                        <dd className="shrink-0 text-[0.6rem] uppercase tracking-[0.14em] text-muted-foreground">
+                          {metric.label}
+                        </dd>
+                      )}
                     </div>
                   ))}
                 </dl>

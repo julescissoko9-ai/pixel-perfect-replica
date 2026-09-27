@@ -54,7 +54,7 @@ const infrastructures: InfrastructureDetail[] = [
     kicker: "Le Filtre Absolu",
     text: "Un standard automatisé qui intercepte vos appels, qualifie l'urgence, et encaisse les frais de déplacement sous séquestre avant le démarrage de vos utilitaires.",
     metrics: [
-      { value: "87 %", label: "Appels qualifiés" },
+      { value: "100 %", label: "Appels qualifiés" },
       { value: "< 90 s", label: "Temps de décision" },
       { value: "+24 %", label: "Marge protégée" },
     ],
@@ -70,9 +70,9 @@ const infrastructures: InfrastructureDetail[] = [
     kicker: "Monétisation des Refus",
     text: "Une marketplace privée transformant vos chantiers refusés en profit net. Sous-traitez vos surplus à un réseau local vérifié, sous séquestre financier automatisé.",
     metrics: [
-      { value: "Monétisation des Surplus", label: "Capacité système", capability: true },
-      { value: "Réseau Privé Sur-Mesure", label: "Capacité système", capability: true },
-      { value: "7,8 k€", label: "Flux mensuel" },
+      { value: "Monétisation des Surplus", capability: true },
+      { value: "Réseau Privé Sur-Mesure", capability: true },
+      { value: "Sécurisation des flux financier", capability: true },
     ],
     steps: [
       "Détection des opportunités refusées mais commercialement exploitables.",
